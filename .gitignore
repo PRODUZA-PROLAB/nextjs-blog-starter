@@ -1,0 +1,43 @@
+# Dependências
+node_modules/
+.pnp
+.pnp.js
+
+# Builds
+.next/
+out/
+dist/
+build/
+tsconfig.tsbuildinfo
+*.tsbuildinfo
+
+# Variáveis de ambiente (NUNCA commitar secrets)
+.env
+.env.*
+.env.local
+.env.production
+.env.development
+.env.staging
+.env.test
+
+# Exceção: o modelo de variáveis é versionado
+!.env.example
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Sistema / macOS
+.DS_Store
+Thumbs.db
+
+# Vercel
+.vercel
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp

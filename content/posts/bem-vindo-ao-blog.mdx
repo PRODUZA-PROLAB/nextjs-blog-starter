@@ -1,0 +1,51 @@
+---
+title: "Bem-vindo ao Next.js Blog Starter"
+date: "2026-01-15"
+category: "Guia"
+description: "Uma introdução ao starter de blog full-stack com Next.js 15, MDX, busca, temas e RSS."
+tags:
+  - nextjs
+  - mdx
+  - blog
+---
+
+Bem-vindo ao **Next.js Blog Starter**, um ponto de partida completo para criar
+um blog full-stack moderno com Next.js 15 App Router, React 19 e TypeScript
+estrito.
+
+## O que está incluído
+
+- Listagem de posts em MDX com frontmatter (título, data, categoria, tags)
+- Páginas de categoria dinâmicas
+- Busca full-text com relevância (título pesa mais)
+- Tema claro/escuro com persistência em `localStorage`
+- Feed RSS 2.0 e `sitemap.xml`
+- SEO básico (metadata, Open Graph, Twitter Cards)
+- Testes de unidade com `node:test`
+
+## Como usar
+
+Os posts vivem em `content/posts/`. Para criar um novo, basta adicionar um
+arquivo `.mdx` seguindo o formato dos exemplos:
+
+```mdx
+---
+title: "Meu Novo Post"
+date: "2026-08-01"
+category: "Tutoriais"
+description: "Uma descrição curta para SEO."
+tags:
+  - exemplo
+---
+
+Aqui vai o conteúdo em Markdown, com suporte a componentes JSX.
+```
+
+O slug é derivado automaticamente do nome do arquivo. Depois é só rodar
+`npm run dev` e acessar `http://localhost:3000`.
+
+## Próximos passos
+
+Confira os posts de [Guia](/category/guia) e [Tutoriais](/category/tutoriais)
+para entender cada parte do starter, ou use a [busca](/search) para encontrar
+um tópico específico.

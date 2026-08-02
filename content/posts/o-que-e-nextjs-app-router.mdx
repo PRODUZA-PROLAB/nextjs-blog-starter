@@ -1,0 +1,49 @@
+---
+title: "O que é o App Router do Next.js 15"
+date: "2026-02-01"
+category: "Guia"
+description: "Entenda o modelo de arquivos, layouts, rotas dinâmicas e server components do App Router."
+tags:
+  - nextjs
+  - app-router
+  - arquitetura
+---
+
+O **App Router** é o modelo de roteamento padrão do Next.js desde a versão 13 e
+a base deste starter. Ele transforma a estrutura de pastas em rotas e permite
+combinar componentes de servidor e cliente no mesmo aplicativo.
+
+## Convenções de pastas
+
+Cada arquivo dentro de `app/` vira uma rota:
+
+```text
+app/
+  layout.tsx             # layout raiz (html + body)
+  page.tsx               # /
+  post/[slug]/page.tsx   # /post/:slug
+  category/[category]/page.tsx
+  search/page.tsx
+  rss.xml/route.ts       # /rss.xml
+  sitemap.ts             # /sitemap.xml
+  robots.ts              # /robots.txt
+```
+
+## Server Components
+
+Por padrão, tudo dentro de `app/` é renderizado no servidor. Só os componentes
+marcados com `'use client'` (como o botão de tema e a caixa de busca) rodam no
+navegador. Isso significa menos JavaScript enviado ao cliente e melhor SEO.
+
+## Rotas dinâmicas
+
+Para uma rota dinâmica, usamos `generateStaticParams` para pré-renderizar as
+páginas estáticas no build:
+
+```tsx
+export async function generateStaticParams() {
+  return getAllPosts().map((post) => ({ slug: post.slug }));
+}
+```
+
+Com `dynamicParams = false`, qualquer slug que não exista retorna 404.

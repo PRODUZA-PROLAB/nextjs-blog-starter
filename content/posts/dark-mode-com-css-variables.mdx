@@ -1,0 +1,50 @@
+---
+title: "Dark Mode com CSS Variables"
+date: "2026-04-22"
+category: "Tutoriais"
+description: "Implemente tema claro e escuro sem dependências usando o atributo data-theme."
+tags:
+  - css
+  - tema
+  - dark-mode
+---
+
+Este starter implementa **dark mode sem nenhuma biblioteca**, usando CSS
+Variables e o atributo `data-theme` no elemento `<html>`.
+
+## A estratégia
+
+1. Um script inline aplica o tema antes da primeira pintura (sem flash);
+2. As cores são definidas como variáveis CSS em `:root` e `[data-theme="dark"]`;
+3. O botão de alternância salva a escolha em `localStorage`.
+
+```css
+:root {
+  --bg: #ffffff;
+  --text: #1f2937;
+}
+
+[data-theme='dark'] {
+  --bg: #0f172a;
+  --text: #e2e8f0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+```
+
+## Persistência
+
+A preferência fica salva em `localStorage` sob a chave
+`nextjs-blog-starter:theme`. Se o usuário nunca escolheu, o tema respeita a
+preferência do sistema via `prefers-color-scheme`.
+
+## Por que CSS Variables?
+
+- Zero dependências e zero JavaScript extra
+- Transições suaves entre temas
+- Fácil de personalizar: basta sobrescrever as variáveis
+
+Teste agora usando o botão de sol/lua no cabeçalho.

@@ -1,0 +1,58 @@
+---
+title: "Gerando RSS e Sitemap"
+date: "2026-05-05"
+category: "Tutoriais"
+description: "Como o starter gera feed RSS 2.0, sitemap.xml e robots.txt automaticamente."
+tags:
+  - rss
+  - seo
+  - sitemap
+---
+
+SEO básico de graça: este starter gera **RSS 2.0**, **sitemap.xml** e
+**robots.txt** automaticamente a partir dos posts.
+
+## Feed RSS
+
+A rota `app/rss.xml/route.ts` responde `GET /rss.xml` com o feed completo.
+Cada post vira um `<item>` com título, link, categoria, data e descrição:
+
+```tsx
+export function GET() {
+  const posts = listPosts(getAllPosts());
+  const xml = buildRssXml({ site: SITE, posts });
+  return new Response(xml, {
+    headers: { 'Content-Type': 'application/rss+xml; charset=utf-8' },
+  });
+}
+```
+
+O XML é gerado por `lib/rss.js`, que escapa corretamente caracteres especiais
+como `<`, `>` e `&`.
+
+## Sitemap e Robots
+
+O Next.js gera `sitemap.xml` e `robots.txt` a partir de `app/sitemap.ts` e
+`app/robots.ts`. O sitemap inclui a home e cada post, com a data de
+modificação:
+
+```ts
+export default function sitemap(): MetadataRoute.Sitemap {
+  const posts = getAllPosts();
+  return [
+    { url: SITE.url, lastModified: new Date() },
+    ...posts.map((post) => ({
+      url: `${SITE.url}/post/${post.slug}`,
+      lastModified: new Date(post.date),
+    })),
+  ];
+}
+```
+
+## Verificando
+
+Depois do `npm run build` e `npm start`, teste no navegador:
+
+- `http://localhost:3000/rss.xml`
+- `http://localhost:3000/sitemap.xml`
+- `http://localhost:3000/robots.txt`

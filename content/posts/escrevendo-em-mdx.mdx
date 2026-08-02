@@ -1,0 +1,57 @@
+---
+title: "Escrevendo Conteúdo em MDX"
+date: "2026-03-10"
+category: "Tutoriais"
+description: "Aprenda a usar markdown, componentes JSX e frontmatter nos seus posts."
+tags:
+  - mdx
+  - markdown
+  - conteudo
+---
+
+MDX é **Markdown com superpoderes**: você escreve texto comum e, quando precisa,
+injeta componentes JSX dentro do conteúdo.
+
+## Markdown básico
+
+Tudo o que você já conhece funciona:
+
+- **Negrito** e *itálico*
+- [Links](https://nextjs.org/docs)
+- Listas ordenadas e não ordenadas
+- Blocos de código com syntax highlighting
+
+```js
+export function soma(a, b) {
+  return a + b;
+}
+```
+
+## JSX dentro do Markdown
+
+Como o conteúdo é compilado como JSX, é possível usar componentes customizados
+no meio do texto, desde que eles sejam importados no arquivo.
+
+```mdx
+import { Callout } from '@/components/callout';
+
+<Callout type="info">
+  MDX permite componentes dentro do conteúdo.
+</Callout>
+```
+
+## Frontmatter
+
+O frontmatter YAML no topo do arquivo alimenta a listagem, as categorias, a
+busca e o RSS. Os campos usados por este starter são:
+
+| Campo       | Obrigatório | Uso                                  |
+| ----------- | ----------- | ------------------------------------ |
+| `title`     | sim         | Título do post, `<title>` e cards    |
+| `date`      | sim         | Ordenação e exibição de data         |
+| `category`  | não         | Página de categoria (padrão: Geral)  |
+| `description` | não       | Meta description e excerpt           |
+| `tags`      | não         | Palavras-chave para a busca          |
+
+Dica: use a [busca](/search) para verificar se o seu post aparece quando
+alguém procura por uma palavra-chave.
